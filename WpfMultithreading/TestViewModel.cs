@@ -37,20 +37,14 @@ namespace WpfMultithreading
                     .GetFiles("*.jpg").OrderBy(o => o.Name).ToList<FileInfo>();
             foreach (FileInfo file in files)
             {
+                Thumbnail temp = new Thumbnail(file.FullName, 200);
                 Application.Current.Dispatcher.Invoke(
                     DispatcherPriority.Send,
-                    new Action(() =>
+                    new Action(() => 
                     {
-                        ImageFrame temp = new ImageFrame(new Thumbnail(file.FullName, 200));
-                        if (temp != null)
-                        {
-                            ImageCollection.Add(temp);
-                        }
-                        else
-                        {
-                            Application.Current.Dispatcher.Thread.Abort();
-                        }
+                        ImageCollection.Add(new ImageFrame(temp));
                     }));
+                Thread.Sleep(500);
             }
         }
     }

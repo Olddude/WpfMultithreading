@@ -21,10 +21,9 @@ namespace WpfMultithreading
 
         void App_Startup(object sender, StartupEventArgs e)
         {
-            TestViewModel test = new TestViewModel(@"C:\Users\Dude\Pictures");
             MainWindow mainWindow = new MainWindow();
+            TestViewModel test = new TestViewModel(@"C:\Users\Dude\Pictures");
             mainWindow.DataContext = test;
-
             test.Start();
 
             mainWindow.Show();
