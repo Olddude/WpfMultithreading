@@ -38,7 +38,28 @@ namespace WpfMultithreading
 
         public Bitmap ResizeImage(Bitmap originalImage)
         {
-            return new Bitmap(originalImage, new Size((int)_size, (int)_size));
+            Size newSize;
+
+            if (originalImage.Width > originalImage.Height)
+            {
+                double aspect = (double)((double)originalImage.Height / (double)originalImage.Width);
+                newSize = new Size();
+                newSize.Width = (int)_size;
+                newSize.Height = (int)(_size * aspect);
+            }
+            else if (originalImage.Height > originalImage.Width)
+            {
+                double aspect = (double)((double)originalImage.Width / (double)originalImage.Height);
+                newSize = new Size();
+                newSize.Width = (int)(_size * aspect);
+                newSize.Height = (int)_size;
+            }
+            else
+            {
+                newSize = new Size((int)_size, (int)_size);
+            }
+
+            return new Bitmap(originalImage, newSize);
         }
 
         public FileInfo ImageFile { get { return _imageFile; } }

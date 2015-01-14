@@ -14,19 +14,6 @@ namespace WpfMultithreading
     /// </summary>
     public partial class App : Application
     {
-        public App()
-        {
-            Startup += App_Startup;
-        }
-
-        void App_Startup(object sender, StartupEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            TestViewModel test = new TestViewModel(@"C:\Users\Dude\Pictures");
-            mainWindow.DataContext = test;
-            test.Start();
-
-            mainWindow.Show();
-        }
+        
     }
 }
