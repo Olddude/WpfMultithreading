@@ -20,6 +20,7 @@
             <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible"/>
             <Setter Property="ItemTemplate" Value="{StaticResource ThumbnailTemplate}"/>
+            <Setter Property="ItemsSource" Value="{Binding Path=ImageCollection}" />
             <Setter Property="ItemsPanel">
                 <Setter.Value>
                     <ItemsPanelTemplate>

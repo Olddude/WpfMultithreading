@@ -11,7 +11,7 @@ using System.Windows;
 using System.Windows.Threading;
 using System.IO;
 
-namespace ImageTester
+namespace WpfMultithreading
 {
     public class TestViewModel
     {
@@ -37,7 +37,7 @@ namespace ImageTester
                     .GetFiles("*.jpg").OrderBy(o => o.Name).ToList<FileInfo>();
             foreach (FileInfo file in files)
             {
-                Application.Current.Dispatcher.BeginInvoke(
+                Application.Current.Dispatcher.Invoke(
                     DispatcherPriority.Send,
                     new Action(() =>
                     {
@@ -51,7 +51,6 @@ namespace ImageTester
                             Application.Current.Dispatcher.Thread.Abort();
                         }
                     }));
-                Thread.Sleep(500);
             }
         }
     }

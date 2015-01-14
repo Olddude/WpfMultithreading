@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -23,36 +24,36 @@ namespace WpfMultithreading
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<ImageFrame> MyImageCollection = new ObservableCollection<ImageFrame>();
+        //public ObservableCollection<ImageFrame> MyImageCollection = new ObservableCollection<ImageFrame>();
 
         public MainWindow()
         {
             InitializeComponent();
-            tb_DirectoryPath.Text = @"C:\Users\Dude\Pictures";
-            lv_MyImageList.ItemsSource = MyImageCollection;
+            //tb_DirectoryPath.Text = @"C:\Users\Dude\Pictures";
+            //lv_MyImageList.ItemsSource = MyImageCollection;
         }
 
-        private void LoadImages(string directoryPath)
-        {
-            IOrderedEnumerable<FileInfo> imageFiles = new DirectoryInfo(directoryPath).GetFiles("*.jpg").OrderBy(i => i.Name);
-            foreach (FileInfo fileInfo in imageFiles)
-            {
-                try
-                {
-                    MyImageCollection.Add(new ImageFrame(new Thumbnail(fileInfo.FullName, 100)));
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Could not load an image file!\n\n" + ex.Message);
-                }
-            }
-        }
+        //private void LoadImages(string directoryPath)
+        //{
+        //    IOrderedEnumerable<FileInfo> imageFiles = new DirectoryInfo(directoryPath).GetFiles("*.jpg").OrderBy(i => i.Name);
+        //    foreach (FileInfo fileInfo in imageFiles)
+        //    {
+        //        try
+        //        {
+        //            MyImageCollection.Add(new ImageFrame(new Thumbnail(fileInfo.FullName, 100)));
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Could not load an image file!\n\n" + ex.Message);
+        //        }
+        //    }
+        //}
 
         private void bu_LoadThumbnails_Click(object sender, RoutedEventArgs e)
         {
             //Also hier soll dann ein Seperater Thread gestartet werden der 'MyImageCollection' befüllt oder so
             //Die Gui Oberfläche muss dabei responsive bleiben
-            LoadImages(tb_DirectoryPath.Text);
+            //LoadImages(tb_DirectoryPath.Text);
         }
     }
 }
